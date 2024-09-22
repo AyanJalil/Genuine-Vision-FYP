@@ -33,7 +33,7 @@ const LoginForm = () => {
           
       </div>
       <div className='hidden lg:block'>
-        <img className='signup-width h-full' src="public/images/a-futuristic-scene-with-a-robot-.jpeg" alt="" />
+        <img className='signup-width h-full' src="public/images/a-futuristic-scene-with-a-robot.jpeg" alt="" />
       </div>
     </div>
   )

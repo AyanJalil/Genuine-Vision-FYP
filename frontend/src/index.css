@@ -11,19 +11,19 @@
     font-style: normal;
   }
 .gradient{
-  background-image: url('../public/images/freepik-export-20240907165635GRls\ 1.png');
+  background-image: url('/images/freepik-export-20240907165635GRl.png');
     background-repeat: no-repeat;
   background-size: cover;
 }
 
 .gradient-signup{
-  background-image: url('../public/images/a-futuristic-scene-with-a-blue-.jpeg');
+  background-image: url('/images/a-futuristic-scene-with-a-blue-.jpeg');
     background-repeat: no-repeat;
   background-size: cover;
 }
 
 .nav-gradient{
-  background-image: url('../public/images/gradient.png');
+  background-image: url('/images/gradient.png');
     background-repeat: no-repeat;
     background-size: cover;
 
