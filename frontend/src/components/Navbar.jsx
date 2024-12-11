@@ -31,7 +31,7 @@ const Navbar = () => {
                     <li><a>Profile</a></li>
                 </ul>
                 </div>
-                <a className="text-lg md:text-xl cursor-pointer font-extrabold">Genuine Vision</a>
+                <Link to="/" className="text-lg md:text-xl cursor-pointer font-extrabold">Genuine Vision</Link>
             </div>
             <div className="navbar-center hidden lg:flex space-x-2">
                 <ul className="menu menu-horizontal px-1 font-extrabold">

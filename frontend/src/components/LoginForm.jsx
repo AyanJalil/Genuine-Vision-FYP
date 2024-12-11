@@ -1,13 +1,27 @@
 import React from 'react'
 import { useForm } from "react-hook-form"
-import { Link} from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
+import { useContext } from 'react'
+import { signUpAuth } from '../../context/AuthProvider'
 
 const LoginForm = () => {
 
-    const { register,formState: { errors }, handleSubmit } = useForm()
-    const onSubmit = (data) => console.log(data)
+    const login = useContext(signUpAuth);
+    const navigate = useNavigate();
 
-
+    const { register,formState: { errors }, handleSubmit, reset } = useForm()
+    const onSubmit = (data) => {
+      login.setLoginInfo({
+        Username: data.username,
+        password: data.password
+      })
+      if(data.username === login.signUpInfo.Firstname && data.password === login.signUpInfo.password){
+        navigate("/deepfake-detection")
+      }else{
+        alert("Invalid credientials")
+      }
+      reset();
+    };
   return (
     <div className='flex justify-between'> 
       <div className='h-screen gradient-signup signupform-width flex justify-center items-center px-4 side-border-detect'>
@@ -31,9 +45,6 @@ const LoginForm = () => {
             <p>Dont have an account? <Link to="/signup"><span className='text-blue-600 underline'>Signup</span></Link></p>
         </form>
           
-      </div>
-      <div className='hidden lg:block'>
-        <img className='signup-width h-full' src="public/images/a-futuristic-scene-with-a-robot.jpeg" alt="" />
       </div>
     </div>
   )
