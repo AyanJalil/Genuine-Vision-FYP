@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Title = () => {
+  const navigate = useNavigate();
   return (
     <div className='h-fit px-2 py-8 md:px-4 bg-black bg-opacity-60'>
 
@@ -8,7 +10,7 @@ const Title = () => {
         <p className='text-2xl md:text-3xl font-bold shadow'>Genuine Vision</p>
         <p className='text-xl md:text-2xl font-semibold'>Empowering Your Vision with Authenticity</p>
         <button className='dive-in'>
-            <span class="text">Dive-In</span>
+            <Link to="/login" className="text span">Dive-In</Link>
         </button>
       </div>
 

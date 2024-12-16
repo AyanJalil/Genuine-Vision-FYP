@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
+import { signUpAuth } from '../../context/AuthProvider';
+import Logout from './Logout';
+import Login from './Login';
 
 
 const Navbar = () => {
+
+    const authorization = useContext(signUpAuth);
   return (
     <>
         <div className="navbar bg-base-100 nav-gradient text-white md:px-4 sm:px-2">
@@ -42,9 +47,7 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <div>
-                    <Link to='/login'><button className='px-4 py-1 font-extrabold rounded-lg border-2 navitem'>Login</button></Link>
-                </div>
+                {authorization.user? <Logout/> : <Login/>}
             </div>
         </div>
     </>

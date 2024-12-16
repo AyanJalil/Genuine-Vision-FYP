@@ -11,16 +11,15 @@ import { signUpAuth } from '../context/AuthProvider'
 const App = () => {
 
   const authUser = useContext(signUpAuth)
-  console.log(authUser);
   return (
     <>
         <div className='poppins-regular text-white'>
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/signup' element={<Signup/>} />
-            <Route path='/deepfake-detection' element={authUser.signUpInfo? <Deepfake_detection/> : <Navigate to="/login" />} />
+            <Route path='/deepfake-detection' element={authUser.user? <Deepfake_detection/> : <Navigate to="/login" />} />
             <Route path='/login' element={<Login/>} />
-            <Route path='/records' element={authUser.signUpInfo? <Records/>: <Navigate to="/login" />} />
+            <Route path='/records' element={authUser.user? <Records/>: <Navigate to="/login" />} />
           </Routes>
             
         </div>   

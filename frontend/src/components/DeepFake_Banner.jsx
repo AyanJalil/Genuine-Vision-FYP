@@ -45,7 +45,7 @@ const DeepFake_Banner = () => {
               <h1 className='font-bold my-3 text-red-500'>Video Selected: <label className='text-white font-semibold'>{videoName}</label> </h1>
 
               <button className='dive-in detect'>
-                  <span class="text" onClick={onVideoSubmit}>Detect</span>
+                  <span class="text span" onClick={onVideoSubmit}>Detect</span>
               </button>
 
           </div>

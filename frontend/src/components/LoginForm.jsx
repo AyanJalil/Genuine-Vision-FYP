@@ -16,7 +16,8 @@ const LoginForm = () => {
         password: data.password
       })
       if(data.username === login.signUpInfo.Firstname && data.password === login.signUpInfo.password){
-        navigate("/deepfake-detection")
+        login.setUser(true);
+        navigate("/deepfake-detection");
       }else{
         alert("Invalid credientials")
       }
