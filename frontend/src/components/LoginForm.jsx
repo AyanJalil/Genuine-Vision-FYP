@@ -10,17 +10,29 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     const { register,formState: { errors }, handleSubmit, reset } = useForm()
+
     const onSubmit = (data) => {
+
       login.setLoginInfo({
         Username: data.username,
         password: data.password
       })
-      if(data.username === login.signUpInfo.Firstname && data.password === login.signUpInfo.password){
-        login.setUser(true);
-        navigate("/deepfake-detection");
-      }else{
-        alert("Invalid credientials")
+
+      let validUser = false;
+
+      for(var i = 0; i<login.signUpInfo.length; i++){
+        if(data.username === login.signUpInfo[i].Username && data.password === login.signUpInfo[i].password){
+          login.setUser(true);
+          validUser = true;
+          navigate("/deepfake-detection");
+          break;
+        }
       }
+
+      if(!validUser){
+        alert("Invalid Credentials");
+      }
+
       reset();
     };
   return (

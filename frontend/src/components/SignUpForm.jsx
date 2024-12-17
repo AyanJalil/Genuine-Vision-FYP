@@ -6,23 +6,43 @@ import { signUpAuth } from '../../context/AuthProvider'
 
 const SignUpForm = () => {
 
-    const signUp = useContext(signUpAuth);
+    const {addUser, signUpInfo} = useContext(signUpAuth);
     const navigate = useNavigate();
 
     const { register,formState: { errors }, handleSubmit, reset } = useForm()
     const onSubmit = (data) => {
-      signUp.setSignUpInfo({
+
+      const isUsernameTaken = signUpInfo.some((user) => user.Username === data.username);
+
+      if (isUsernameTaken) {
+        alert("Username already taken. Please choose a different one.");
+        return;
+      }
+
+      const isEmailTaken = signUpInfo.some((user) => user.email === data.email);
+
+      if (isEmailTaken) {
+        alert("Email already in use. Please choose a new Email  for SignUp.");
+        return;
+      }
+
+      const newUser = {
         email: data.email,
         password : data.password,
         Fullname: data.fullname,
-        Firstname: data.username
-      })
+        Username: data.username
+      };
+
+      addUser(newUser);
 
       reset();
         
-      navigate("/login")
+      // navigate("/login")
       
     }
+    useEffect(()=>{
+      console.log(signUpInfo);
+    },[signUpInfo])
   return (
     <div className=''> 
       <div className='h-screen gradient-signup signupform-width flex justify-center items-center px-4 side-border-detect'>
