@@ -7,6 +7,7 @@ import Login from './login/Login'
 import Records from './records/Records'
 import { useContext } from 'react'
 import { signUpAuth } from '../context/AuthProvider'
+import Profile from './profile/Profile'
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
             <Route path='/deepfake-detection' element={authUser.user? <Deepfake_detection/> : <Navigate to="/login" />} />
             <Route path='/login' element={<Login/>} />
             <Route path='/records' element={authUser.user? <Records/>: <Navigate to="/login" />} />
+            <Route path='/profile' element={authUser.user? <Profile/>: <Navigate to="/login" />} />
           </Routes>
             
         </div>   

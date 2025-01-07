@@ -19,15 +19,20 @@ const SignUpForm = () => {
         return;
       }
 
-      const isEmailTaken = signUpInfo.some((user) => user.email === data.email);
+      const isEmailTaken = signUpInfo.some((user) => user.Email === data.email);
 
       if (isEmailTaken) {
         alert("Email already in use. Please choose a new Email  for SignUp.");
         return;
       }
+      
+      if(data.password.length < 8){
+        alert("pasword length must be above 8 characters..")
+        return;
+      }
 
       const newUser = {
-        email: data.email,
+        Email: data.email,
         password : data.password,
         Fullname: data.fullname,
         Username: data.username
@@ -37,7 +42,7 @@ const SignUpForm = () => {
 
       reset();
         
-      // navigate("/login")
+      navigate("/login")
       
     }
     useEffect(()=>{

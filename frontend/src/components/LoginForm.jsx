@@ -15,15 +15,23 @@ const LoginForm = () => {
 
       login.setLoginInfo({
         Username: data.username,
-        password: data.password
+        password: data.password,
       })
 
       let validUser = false;
+      let CInfo = {};
 
       for(var i = 0; i<login.signUpInfo.length; i++){
         if(data.username === login.signUpInfo[i].Username && data.password === login.signUpInfo[i].password){
           login.setUser(true);
           validUser = true;
+          CInfo = {
+            username: login.signUpInfo[i].Username,
+            fullname: login.signUpInfo[i].Fullname,
+            email: login.signUpInfo[i].Email
+          }
+          login.setCInfo(CInfo);
+          console.log("CInfo set:", CInfo);
           navigate("/deepfake-detection");
           break;
         }
@@ -35,6 +43,7 @@ const LoginForm = () => {
 
       reset();
     };
+    
   return (
     <div className='flex justify-between'> 
       <div className='h-screen gradient-signup signupform-width flex justify-center items-center px-4 side-border-detect'>

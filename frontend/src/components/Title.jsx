@@ -1,8 +1,19 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { signUpAuth } from '../../context/AuthProvider';
 
 const Title = () => {
+
+  const user = useContext(signUpAuth);
   const navigate = useNavigate();
+
+  const navigation = ()=>{
+    if(user.user){
+      navigate('/deepfake-detection')
+    }else{
+      navigate('/login')
+    }
+  }
   return (
     <div className='h-fit px-2 py-8 md:px-4 bg-black bg-opacity-60'>
 
@@ -10,7 +21,7 @@ const Title = () => {
         <p className='text-2xl md:text-3xl font-bold shadow'>Genuine Vision</p>
         <p className='text-xl md:text-2xl font-semibold'>Empowering Your Vision with Authenticity</p>
         <button className='dive-in'>
-            <Link to="/login" className="text span">Dive-In</Link>
+            <button onClick={navigation} className="text span">Dive-In</button>
         </button>
       </div>
 

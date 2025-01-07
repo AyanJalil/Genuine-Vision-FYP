@@ -33,7 +33,7 @@ const Navbar = () => {
                     <li><Link to='/'>Home</Link></li>
                     <li><Link to='/deepfake-detection'>Deepfake</Link></li>
                     <li><Link to='/records'>Records</Link></li>
-                    <li><a>Profile</a></li>
+                    <li><Link to='/profile'>Profile</Link></li>
                 </ul>
                 </div>
                 <Link to="/" className="text-lg md:text-xl cursor-pointer font-extrabold">Genuine Vision</Link>
@@ -43,7 +43,7 @@ const Navbar = () => {
                     <li><Link className='navitem' to='/'>Home</Link></li>
                     <li><Link className='navitem' to='/deepfake-detection'>Deepfake</Link></li>
                     <li><Link className='navitem' to='/records'>Records</Link></li>
-                    <li><a className='navitem'>Profile</a></li>
+                    <li><Link className='navitem' to='/profile'>Profile</Link></li>
                 </ul>
             </div>
             <div className="navbar-end">

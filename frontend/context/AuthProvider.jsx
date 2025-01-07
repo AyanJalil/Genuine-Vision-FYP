@@ -8,13 +8,14 @@ const AuthProvider = (props) => {
     const [signUpInfo, setSignUpInfo] = useState([]);
     const [loginInfo, setLoginInfo] = useState();
     const [user, setUser] = useState(false);
+    const [CInfo, setCInfo] = useState()
 
     const addUser = (newUser)=>{
       setSignUpInfo((prevUsers) => [...prevUsers, newUser]);
     }
 
   return (
-    <signUpAuth.Provider value={{signUpInfo, setSignUpInfo, loginInfo, setLoginInfo, user, setUser, addUser}}>
+    <signUpAuth.Provider value={{signUpInfo, setSignUpInfo, loginInfo, setLoginInfo, user, setUser, addUser,CInfo, setCInfo}}>
         {props.children}
     </signUpAuth.Provider>
   )
