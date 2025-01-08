@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import UpdateInfo from '../components/UpdateInfo'
-import CurrentInfo from 'src\components\CurrentInfo.jsx'
+import CurrentInfo from '/src/components/CurrentInfo.jsx'
 
 const Profile = () => {
   return (
