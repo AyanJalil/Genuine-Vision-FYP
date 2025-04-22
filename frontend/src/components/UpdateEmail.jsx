@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { signUpAuth } from '../../context/AuthProvider';
 
 const UpdateEmail = () => {
-  const { signUpInfo, CInfo } = useContext(signUpAuth);
+  const { signUpInfo, CInfo, triggerRefresh } = useContext(signUpAuth);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   
@@ -56,6 +56,7 @@ const UpdateEmail = () => {
     } finally {
       setLoading(false);
     }
+    triggerRefresh();
   };
 
   return (

@@ -3,9 +3,10 @@ import { useForm } from "react-hook-form";
 import { signUpAuth } from '../../context/AuthProvider';
 
 const UpdateFullName = () => {
-  const { signUpInfo, CInfo } = useContext(signUpAuth);
+  const { signUpInfo, CInfo, triggerRefresh } = useContext(signUpAuth);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  
 
   const {
     register,
@@ -55,6 +56,7 @@ const UpdateFullName = () => {
     } finally {
       setLoading(false);
     }
+    triggerRefresh();
   };
 
   return (

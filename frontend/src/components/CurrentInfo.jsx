@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { signUpAuth } from '../../context/AuthProvider';
 
 const CurrentInfo = () => {
-  const { CInfo } = useContext(signUpAuth);
+  const { CInfo, refreshTrigger } = useContext(signUpAuth);
   const [userInfo, setUserInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -32,7 +32,7 @@ const CurrentInfo = () => {
     };
 
     fetchUserInfo();
-  }, [CInfo?.username]);
+  }, [CInfo?.username,refreshTrigger]);
 
   if (loading) {
     return (
