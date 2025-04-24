@@ -6,7 +6,9 @@ import {
   updateFullname,
   updateUsername,
   updatePassword,
-  getUserInfo
+  getUserInfo,
+  saveVideoResult,
+  getUserResults
 } from '../controllers/userController.js';
 
 const router = express.Router();
@@ -18,5 +20,7 @@ router.put('/update-fullname', updateFullname);
 router.put('/update-username', updateUsername);
 router.put('/update-password', updatePassword);
 router.get('/user/:username', getUserInfo);
+router.post('/save-result', saveVideoResult);
+router.get('/results/:username', getUserResults);
 
 export default router;

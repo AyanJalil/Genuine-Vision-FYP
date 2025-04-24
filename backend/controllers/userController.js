@@ -18,7 +18,7 @@ export const signup = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = new User({ username, fullname, email, password: hashedPassword });
+    const newUser = new User({ username, fullname, email, password: hashedPassword,result: ["none"] });
     await newUser.save();
 
     res.status(201).json({ success: true, message: 'User registered successfully' });
@@ -209,3 +209,72 @@ export const getUserInfo = async (req, res) => {
     res.status(500).json({ success: false, message: 'Error fetching user information' });
   }
 };
+
+// POST: Save Detection Result
+export const saveVideoResult = async (req, res) => {
+
+  const {
+    userId,
+    filename,
+    classification,
+    fake_percentage,
+    motion_anomaly_percentage,
+    processing_time,
+  } = req.body;
+
+  // Validation
+  if (
+    !userId ||
+    !filename ||
+    !classification ||
+    fake_percentage === undefined ||
+    motion_anomaly_percentage === undefined ||
+    processing_time === undefined
+  ) {
+    return res.status(400).json({ error: 'Missing required fields in the request body' });
+  }
+
+  // Construct a structured object instead of string
+  const resultObject = {
+    File_Name: filename,
+    Classification: classification,
+    Fake: `${fake_percentage}%`,
+    Motion_Anomaly: `${motion_anomaly_percentage}%`,
+    Time: `${processing_time}s`,
+  };
+
+  try {
+    const updatedUser = await User.findOneAndUpdate(
+      { username: userId }, // match by username (or _id if you prefer)
+      { $push: { result: resultObject } },
+      { new: true }
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    return res.json({ message: 'Result saved successfully', data: updatedUser });
+  } catch (error) {
+    console.error("Error saving result:", error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// GET: Fetch Results for a User
+export const getUserResults = async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const user = await User.findOne({ username });
+    if (!user) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    res.json({ success: true, results: user.result });
+  } catch (err) {
+    console.error('Error fetching results:', err);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+};
+
